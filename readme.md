@@ -27,8 +27,9 @@ El proyecto se llevará a cabo usando python, y la API de OpenAI, para generar t
 - Almacenar toda la conversación
 - Usar la conversación para generar un prompt y después una imagen, ambos con la API de Open AI (texto - texto y texto - imagen)
 
-## Herramientas y tecnologías: 
-¿Qué técnicas de prompting utilizarás? Justifica tus respuestas 
+## Ténicas utilizadas: 
+- One Shot Prompting: La uso en todas las solicitudes que hago a openAI en el código, para poder darle contexto al sistema.
+- Few Shot Prompting: La uso para que el asistente entienda como debe responder a las preguntas del usuario en una primera instancia.
 
 ## Implementación: 
 - En el archivo index.py desarrollé el código
