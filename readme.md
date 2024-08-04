@@ -17,13 +17,20 @@ El proyecto es viable utilizando la API de OPEN AI. En este caso serían 3 parte
 Asesorar al usuario con sus decisiones financieras y brindarle un plan de acción.
 
 ## Metodología: 
-¿Cómo se llevará a cabo el proyecto? ¿Qué procedimientos implementarás para lograr los objetivos? Justifica tus respuestas.
+El proyecto se llevará a cabo usando python, y la API de OpenAI, para generar textos e imágenes de acuerdo a la interacción del asistente con el usuario.
+### Procedicientos:
+- Importar el módulo de OpenAI, que sería la biblioteca de python que brinda openAI para interactuar con todos sus modelos.
+- Importar json, un módulo de python que sirve para interactuar con datos en formato json (En este caso sería el historial de chats, ya que al prompt para generar la imagen, el chat se lo envío en ese formato).
+- Obtener la API KEY de OpenAI para poder recibir respuestas del modelo de chat GPT.
+- Crear un chatCompletion usando la API de openAI para poder interactuar con el modelo que elija en el header de la solicitud.
+- Crear un contexto para brindarle al sistema y que entienda como tiene que actuar
+- Almacenar toda la conversación
+- Usar la conversación para generar un prompt y después una imagen, ambos con la API de Open AI (texto - texto y texto - imagen)
 
 ## Herramientas y tecnologías: 
 ¿Qué técnicas de prompting utilizarás? Justifica tus respuestas 
 
 ## Implementación: 
-Desarrolla el prompt y el código que te permitirá llegar a tu solución propuesta.
-
+- En el archivo index.py desarrollé el código
 
 

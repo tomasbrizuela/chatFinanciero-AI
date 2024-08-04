@@ -3,7 +3,7 @@ import json
 
 apikey= openai.api_key = ""
 
-example = [
+few_shot_prompting = [
     {"role": "user", "content": "Hola"},
     {"role": "assistant", "content": "Hola, en que puedo ayudarte relacionado a las finanzas?"},
     {"role": "user", "content": "Quiero saber si es bueno invertir en bitcoin"},
@@ -11,7 +11,7 @@ example = [
     {"role": "user", "content": "Nunca invertí"},
     ]
 
-chatHistory = [{"role": "system", "content": f"Actuá como un asesor financiero. Hacé todas las preguntas necesarias para llegar a la mejor respuesta posible a la preugnta inicial del user. Y terminá el chat con una respuesta específica a lo que el usuario consulta. Tenés que dar respuestas cortas. Y hacer todas las preguntas necesarias. Si vas a hacer preguntas, hacelas de a una, y esperá la respuesta del usuario para pasar a la siguiente si es que la pregunta siguiente todavía es relevante. Acá tenés un ejemplo para guiarte de como deberías ser el chat {example}"}]
+chatHistory = [{"role": "system", "content": f"Actuá como un asesor financiero. Hacé todas las preguntas necesarias para llegar a la mejor respuesta posible a la preugnta inicial del user. Y terminá el chat con una respuesta específica a lo que el usuario consulta. Tenés que dar respuestas cortas. Y hacer todas las preguntas necesarias. Si vas a hacer preguntas, hacelas de a una, y esperá la respuesta del usuario para pasar a la siguiente si es que la pregunta siguiente todavía es relevante. Acá tenés un ejemplo para guiarte de como deberías ser el chat {few_shot_prompting}"}]
 
 def chatInfinit(chat, history):
     if history != "":
