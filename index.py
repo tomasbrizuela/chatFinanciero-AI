@@ -1,5 +1,8 @@
 import openai
 import json
+import os
+import requests
+import time
 
 apikey= openai.api_key = ""
 
@@ -17,7 +20,7 @@ def chatInfinit(chat, history):
     if history != "":
         question = history
     else:
-        question = input('Tu turno: ')
+        question = input('Tu turno: \n')
     
     chatHistory.append({"role": "user", "content": question})
     response = openai.ChatCompletion.create(
@@ -28,7 +31,7 @@ def chatInfinit(chat, history):
     )
     assistant = response.choices[0].message
     chatHistory.append(assistant)
-    print(f"Asistente: {assistant.content}")
+    print(f"Asistente: {assistant.content} \n")
 
 def createPrompt(chat):
     chatString = json.dumps(chat, ensure_ascii=False)
@@ -42,7 +45,7 @@ def createPrompt(chat):
         n=1
     )
     promptGenerado = respuesta.choices[0].message.content
-    createImage(promptGenerado)
+    return createImage(promptGenerado)
 
 
 def createImage(prompt):
@@ -53,11 +56,33 @@ def createImage(prompt):
         quality="standard",
         n=1
     )
-
+    imageUrl = image.data[0].url
     print(image.data[0].url)
+    return imageUrl
+
+def saveImage(imageUrl):
+    response = requests.get(imageUrl)
+
+    if response.status_code == 200:
+        id = int(time.time())
+        fileName = f"imagenChatFinaciero {id}"
+        print("FileName: ", fileName)
+        fileName += '.png'
+
+        directory = "./image_generated"
+
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        filepath = os.path.join(directory, fileName)
+
+        with open(filepath, "wb") as f:
+            f.write(response.content)
+            print("La imagen ha sido descargada y almacenada correctamente en:", filepath)
+
 
 def chatSession():
-    print("Chatea con nuestro asesor financiero")
+    print("Chatea con nuestro asesor financiero \n")
     while True:
         try:
             continueChat
@@ -68,13 +93,16 @@ def chatSession():
 
         continueChat = input("Tu respuesta (write x to exit): ")
         if continueChat == "x":
-            responseFinal = input("Antes de irte, ¿Te gustaría generar un plan de acción visual [Y/N]").lower()
+            responseFinal = input("Antes de irte, ¿Te gustaría generar un plan de acción visual [Y/N] \n").lower()
             if responseFinal == "y":
-                print("Cargando plan de acción...")
-                createPrompt(chatHistory)
-                print("Gracias por usar nuestro chat")
+                print("Cargando plan de acción... \n")
+                imageUrlObtained = createPrompt(chatHistory)
+
+                saveImage(imageUrlObtained)
+
+                print("Gracias por usar nuestro chat \n")
             else:
-                print("Gracias por usar nuestro chat financiero")
+                print("Gracias por usar nuestro chat financiero \n")
                 break
             break
 

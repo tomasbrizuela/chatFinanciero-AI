@@ -37,4 +37,7 @@ El proyecto se llevará a cabo usando python, y la API de OpenAI, para generar t
 # Mejoras
 - Agregué "gpt-4o" como modelo a la hora de generar el prompt que se va a pasar a Dall-e 3 para tener mejores resultados que con "gpt 4o mini".
 - Agregué detalles en el prompt que se le da a "gpt 4o" para que la imagen sea lo más real posible.
+- importe el módulo requests para descargar la imagen
+- imorte el módulo "os" para guardar la imagen generada
+- importe el módulo time para guardar la imagen generada con un id único
 
