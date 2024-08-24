@@ -34,11 +34,11 @@ def createPrompt(chat):
     chatString = json.dumps(chat, ensure_ascii=False)
     respuesta = openai.ChatCompletion.create(
         messages=[
-            {"role": "system", "content": "Sos un sistema que recibe un historial de chat entre un asesor financiero y un usuario y genera el prompt más específico posible para que al darselo a DALL-E 3, este genere una imagen de una hoja de papel con el plan de acción para resolver la duda del usuario. Tiene que ser un plan de acción visual, con los pasos brindados por el asesor, para que el usuario al ver la imagen entienda el paso a paso y que tiene que hacer"},
+            {"role": "system", "content": "Sos un sistema que recibe un historial de chat entre un asesor financiero y un usuario y genera el prompt más específico posible para que al darselo a DALL-E 3, este genere una imagen de una hoja de papel con el plan de acción para resolver la duda del usuario. Tiene que ser un plan de acción visual, con los pasos brindados por el asesor, para que el usuario al ver la imagen entienda el paso a paso y que tiene que hacer. La imagen tiene que ser REAL een cuanto al contenido que muestra del chat. La imagen tiene que mostrar datos reales sacados del chat"},
             {"role": "user", "content": chatString}
             ],
-        model="gpt-4o-mini",
-        temperature=1,
+        model="gpt-4o",
+        temperature=0,
         n=1
     )
     promptGenerado = respuesta.choices[0].message.content
